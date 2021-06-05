@@ -30,27 +30,17 @@ export default {
       var myChart = echarts.init(document.getElementById('main'))
       var option = {
         legend: {},
-        tooltip: {
-          trigger: 'axis',
-          showContent: false
-        },
+        tooltip: {},
         dataset: {
           source: this.data_stat
         },
         xAxis: { type: 'category' },
-        yAxis: { gridIndex: 0 },
-        grid: { top: '55%' },
+        yAxis: {},
         series: [
-          { type: 'line', smooth: true, seriesLayoutBy: 'row' },
-          { type: 'line', smooth: true, seriesLayoutBy: 'row' },
-          { type: 'line', smooth: true, seriesLayoutBy: 'row' },
-          { type: 'line', smooth: true, seriesLayoutBy: 'row' },
-          {
-            type: 'pie',
-            id: 'pie',
-            radius: '30%',
-            center: ['50%', '25%']
-          }
+          { type: 'bar', smooth: true },
+          { type: 'bar', smooth: true },
+          { type: 'bar', smooth: true },
+          { type: 'bar', smooth: true }
         ]
       }
       myChart.setOption(option)

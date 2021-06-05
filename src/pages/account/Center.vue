@@ -5,7 +5,7 @@
         <el-card style="width:100%" :bordered="false">
           <div class="account-center-avatarHolder" v-if="info[0]">
             <div class="avatar">
-              <img src='https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'>
+              <img :src=info[0].portrait>
             </div>
             <el-divider></el-divider>
             <div class="account">{{info[0].account}}</div>

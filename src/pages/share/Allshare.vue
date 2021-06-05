@@ -1,5 +1,10 @@
 <template>
   <div>
+    <!-- 面包屑导航区 -->
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/center' }">个人页</el-breadcrumb-item>
+      <el-breadcrumb-item>运动记录</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row :gutter="20">
       <el-col :span="6">
         <el-input placeholder="请输入内容" v-model="search_form.content" clearable @clear="get_share_list">
@@ -26,19 +31,10 @@
       </el-col>
     </el-row>
     <!-- 添加记录的对话框 -->
-    <el-dialog title="添加运动记录" :visible.sync="add_dialog_visible" width="50%" @close="add_dialog_close">
+    <el-dialog title="添加我的分享" :visible.sync="add_dialog_visible" width="50%" @close="add_dialog_close">
       <el-form :model="add_share_form" ref="add_share_form_ref" :rules="add_share_form_rules" label-width="100px">
-        <el-form-item label="类型" prop="type">
-          <el-input v-model="add_share_form.type"></el-input>
-        </el-form-item>
-        <el-form-item label="时长(h)" prop="time_len">
-          <el-input v-model="add_share_form.time_len"></el-input>
-        </el-form-item>
-        <el-form-item label="地点" prop="place">
-          <el-input v-model="add_share_form.place"></el-input>
-        </el-form-item>
-        <el-form-item label="距离(km)" prop="len">
-          <el-input v-model="add_share_form.len"></el-input>
+        <el-form-item label="分享" prop="message">
+          <el-input type="textarea" v-model="add_share_form.message"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -49,17 +45,8 @@
     <!-- 修改记录的对话框 -->
     <el-dialog title="修改记录信息" :visible.sync="edit_dialog_visible" width="50%" @close="edit_dialog_close">
       <el-form :model="edit_share_form" ref="edit_share_form_ref" :rules="edit_share_form_rules" label-width="100px">
-        <el-form-item label="类型" prop="type">
-          <el-input v-model="edit_share_form.type"></el-input>
-        </el-form-item>
-        <el-form-item label="时长(h)" prop="time_len">
-          <el-input v-model="edit_share_form.time_len"></el-input>
-        </el-form-item>
-        <el-form-item label="地点" prop="place">
-          <el-input v-model="edit_share_form.place"></el-input>
-        </el-form-item>
-        <el-form-item label="距离(km)" prop="len">
-          <el-input v-model="edit_share_form.len"></el-input>
+        <el-form-item label="分享" prop="message">
+          <el-input type="textarea" v-model="edit_share_form.message"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -81,45 +68,20 @@ export default {
       add_dialog_visible: false,
       add_share_form: {
         account: window.sessionStorage.getItem('account'),
-        type: '',
-        time_len: ''
+        message: ''
       },
       add_share_form_rules: {
-        type: [
-          { required: true, message: '请输入类型', trigger: 'blur' },
-          { min: 1, max: 5, message: '类型的长度在1～5个字', trigger: 'blur' }
-        ],
-        time_len: [
-          { required: true, message: '请输入时长', trigger: 'blur' },
-          { min: 1, max: 5, message: '时长的长度在1～5个字', trigger: 'blur' }
-        ],
-        place: [
-          { required: true, message: '请输入地点', trigger: 'blur' },
-          { min: 1, max: 5, message: '地点的长度在1～5个字', trigger: 'blur' }
-        ],
-        len: [
-          { required: true, message: '请输入距离', trigger: 'blur' },
-          { min: 1, max: 5, message: '距离的长度在1～5个字', trigger: 'blur' }
+        message: [
+          { required: true, message: '请输入分享', trigger: 'blur' },
+          { min: 10, max: 50, message: '分享的长度在10~50个字', trigger: 'blur' }
         ]
       },
       edit_dialog_visible: false,
       edit_share_form: {},
       edit_share_form_rules: {
-        type: [
-          { required: true, message: '请输入类型', trigger: 'blur' },
-          { min: 1, max: 5, message: '类型的长度在1～5个字', trigger: 'blur' }
-        ],
-        time_len: [
-          { required: true, message: '请输入时长', trigger: 'blur' },
-          { min: 1, max: 5, message: '时长的长度在1～5个字', trigger: 'blur' }
-        ],
-        place: [
-          { required: true, message: '请输入地点', trigger: 'blur' },
-          { min: 1, max: 5, message: '地点的长度在1～5个字', trigger: 'blur' }
-        ],
-        len: [
-          { required: true, message: '请输入距离', trigger: 'blur' },
-          { min: 1, max: 5, message: '距离的长度在1～5个字', trigger: 'blur' }
+        message: [
+          { required: true, message: '请输入分享', trigger: 'blur' },
+          { min: 10, max: 50, message: '分享的长度在10~50个字', trigger: 'blur' }
         ]
       }
     }

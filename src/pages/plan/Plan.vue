@@ -52,7 +52,7 @@
     </el-dialog>
     <!-- 修改计划的对话框 -->
     <el-dialog title="修改计划信息" :visible.sync="edit_dialog_visible" width="50%" @close="edit_dialog_close">
-      <el-form :model="edit_plan_form" ref="edit_plan_form_ref" :rules="edit_plan_form_rules" label-width="100px">
+      <el-form :model="edit_plan_form" ref="edit_plan_form_ref" :rules="edit_plan_form_rules" label-width="150px">
         <el-form-item label="计划名" prop="name">
           <el-input v-model="edit_plan_form.name"></el-input>
         </el-form-item>

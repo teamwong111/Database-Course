@@ -38,10 +38,10 @@
       <el-form :model="add_record_form" ref="add_record_form_ref" :rules="add_record_form_rules" label-width="100px">
         <el-form-item label="类型" prop="type">
           <el-select v-model="add_record_form.type">
-            <el-option label="篮球" value="basketball"></el-option>
-            <el-option label="足球" value="football"></el-option>
-            <el-option label="跑步" value="running"></el-option>
-            <el-option label="羽毛球" value="badminton"></el-option>
+            <el-option label="篮球" value="篮球"></el-option>
+            <el-option label="足球" value="足球"></el-option>
+            <el-option label="跑步" value="跑步"></el-option>
+            <el-option label="羽毛球" value="羽毛球"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="时长(h)" prop="time_len">
@@ -60,10 +60,15 @@
       </span>
     </el-dialog>
     <!-- 修改记录的对话框 -->
-    <el-dialog title="修改记录信息" :visible.sync="edit_dialog_visible" width="50%" @close="edit_dialog_close">
+    <el-dialog title="修改记录信息" :visible.sync="edit_dialog_visible" width="30%" @close="edit_dialog_close">
       <el-form :model="edit_record_form" ref="edit_record_form_ref" :rules="edit_record_form_rules" label-width="100px">
         <el-form-item label="类型" prop="type">
-          <el-input v-model="edit_record_form.type"></el-input>
+          <el-select v-model="edit_record_form.type">
+            <el-option label="篮球" value="篮球"></el-option>
+            <el-option label="足球" value="足球"></el-option>
+            <el-option label="跑步" value="跑步"></el-option>
+            <el-option label="羽毛球" value="羽毛球"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="时长(h)" prop="time_len">
           <el-input v-model="edit_record_form.time_len"></el-input>
