@@ -56,7 +56,8 @@ export default {
         console.log(res)
         if (res.code !== 200) return this.$message.error(res.msg)
         this.$message.success(res.msg)
-        window.sessionStorage.setItem('account', this.login_form.account)
+        window.sessionStorage.setItem('account', res.data[0].account)
+        window.sessionStorage.setItem('user_id', res.data[0].user_id)
         this.$router.push('/center')
       })
     }

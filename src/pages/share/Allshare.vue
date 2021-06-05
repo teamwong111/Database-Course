@@ -3,7 +3,7 @@
     <!-- 面包屑导航区 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/center' }">个人页</el-breadcrumb-item>
-      <el-breadcrumb-item>运动记录</el-breadcrumb-item>
+      <el-breadcrumb-item>运动分享</el-breadcrumb-item>
     </el-breadcrumb>
     <el-row :gutter="20">
       <el-col :span="6">
@@ -14,17 +14,22 @@
       <el-col :span="4">
         <el-button type="primary" @click="add_dialog_visible = true">添加我的分享</el-button>
       </el-col>
-      <el-col v-for="(share) in share_list" :key="share.share_id">
+      <el-col v-for="(item) in share_list" :key="item.share_id">
         <el-card shadow="hover">
           <div slot="header" class="clearfix">
-            <span>{{share.name}}</span>
+            <span>{{item.share.name}}</span>
           </div>
           <div>
-            <span>{{share.message}}</span>
+            <span>{{item.share.message}}</span>
+            <el-divider v-if="item.comment"></el-divider>
+            <div v-for="(sub_item) in item.comment" :key="sub_item.comment_id">
+              <span class="comment">{{sub_item.name}}: {{sub_item.content}}</span>
+            </div>
             <div class="bottom clearfix">
-              <el-button size="small" type="primary" icon="el-icon-edit" @click="show_edit_dialog(share.share_id)"></el-button>
-              <el-button size="small" type="danger" icon="el-icon-delete" @click="remove_share(share.share_id)"></el-button>
-              <el-button size="small" type="warning" icon="el-icon-star-off" @click="add_liking(share.share_id)">{{share.liking}}</el-button>
+              <el-button size="small" type="warning" icon="el-icon-star-off" @click="add_liking(item.share.share_id)">{{item.share.liking}}</el-button>
+              <el-button size="small" type="success" icon="el-icon-chat-dot-square" @click="add_comment(item.share.share_id)"></el-button>
+              <el-button size="small" type="primary" icon="el-icon-edit" v-if="item.share.user_id==user_id" @click="show_edit_dialog(item.share.share_id)"></el-button>
+              <el-button size="small" type="danger" icon="el-icon-delete" v-if="item.share.user_id==user_id" @click="remove_share(item.share.share_id)"></el-button>
             </div>
           </div>
         </el-card>
@@ -54,6 +59,18 @@
         <el-button type="primary" @click="edit_share">确定</el-button>
       </span>
     </el-dialog>
+    <!-- 评论的对话框 -->
+    <el-dialog title="发表评论" :visible.sync="comment_dialog_visible" width="50%" @close="comment_dialog_close">
+      <el-form :model="comment_form" ref="comment_form_ref" :rules="comment_form_rules" label-width="100px">
+        <el-form-item label="分享" prop="message">
+          <el-input type="textarea" v-model="comment_form.message"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="comment_dialog_visible = false">取消</el-button>
+        <el-button type="primary" @click="get_comment">确定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -61,6 +78,7 @@
 export default {
   data () {
     return {
+      user_id: window.sessionStorage.getItem('user_id'),
       search_form: {
         content: ''
       },
@@ -82,6 +100,18 @@ export default {
         message: [
           { required: true, message: '请输入分享', trigger: 'blur' },
           { min: 10, max: 50, message: '分享的长度在10~50个字', trigger: 'blur' }
+        ]
+      },
+      comment_dialog_visible: false,
+      comment_form: {
+        share_id: '',
+        account: window.sessionStorage.getItem('account'),
+        message: ''
+      },
+      comment_form_rules: {
+        message: [
+          { required: true, message: '请输入评论', trigger: 'blur' },
+          { min: 1, max: 50, message: '评论的长度在1~50个字', trigger: 'blur' }
         ]
       }
     }
@@ -117,6 +147,21 @@ export default {
       if (res.code !== 200) return this.$message.error(res.msg)
       this.$message.success(res.msg)
       this.get_share_list()
+    },
+    async add_comment (id) {
+      this.comment_dialog_visible = true
+      this.comment_form.share_id = id
+    },
+    async get_comment () {
+      const { data: res } = await this.$http.post('add_comment', this.comment_form)
+      console.log(res)
+      if (res.code !== 200) return this.$message.error(res.msg)
+      this.$message.success(res.msg)
+      this.comment_dialog_visible = false
+      this.get_share_list()
+    },
+    comment_dialog_close () {
+      this.$refs.comment_form_ref.resetFields()
     },
     async show_edit_dialog (id) {
       const { data: res } = await this.$http.post('single_share', { share_id: id, account: window.sessionStorage.getItem('account') })
@@ -187,5 +232,9 @@ export default {
   }
   .clearfix:after {
       clear: both
+  }
+  .comment {
+    color: blue;
+    font-size: 10px;
   }
 </style>
