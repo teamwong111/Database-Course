@@ -62,7 +62,7 @@
     <!-- 评论的对话框 -->
     <el-dialog title="发表评论" :visible.sync="comment_dialog_visible" width="50%" @close="comment_dialog_close">
       <el-form :model="comment_form" ref="comment_form_ref" :rules="comment_form_rules" label-width="100px">
-        <el-form-item label="分享" prop="message">
+        <el-form-item label="评论" prop="message">
           <el-input type="textarea" v-model="comment_form.message"></el-input>
         </el-form-item>
       </el-form>
