@@ -1,6 +1,6 @@
 # Database-Course
 
-[中文文档](https://github.com/teamwong111/Compiling-Principles-Course/blob/main/README-cn.md)
+[中文文档](https://github.com/teamwong111/Database-Course/blob/main/README-cn.md)
 
 It is my term porject repo of Compiling Principles Course(2021 spring) in Tongji University
 
@@ -130,6 +130,6 @@ If I have infringement or you have any questions, please contact me by email wun
 ---
 
 ## License
-[MIT](https://github.com/teamwong111/Compiling-Principles-Course/blob/main/LICENSE)
+[MIT](https://github.com/teamwong111/Database-Course/blob/main/LICENSE)
 
 ---
