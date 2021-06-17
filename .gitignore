@@ -1,3 +1,3 @@
 node_modules*
-/.vscode/
-/__pycache__/
+/database-backend/.vscode/
+*.pyc
