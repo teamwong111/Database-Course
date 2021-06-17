@@ -2,7 +2,7 @@
 
 [中文文档](https://github.com/teamwong111/Database-Course/blob/main/README-cn.md)
 
-It is my term porject repo of Compiling Principles Course(2021 spring) in Tongji University
+It is my term porject repo of Database Course(2021 spring) in Tongji University
 
 ---
 
