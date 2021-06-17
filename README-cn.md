@@ -1,39 +1,35 @@
 # Database-Course
 
-[中文文档](https://github.com/teamwong111/Compiling-Principles-Course/blob/main/README-cn.md)
-
-It is my term porject repo of Compiling Principles Course(2021 spring) in Tongji University
+这是我在同济大学数据库课程（2021春）的大作业
 
 ---
 
-## Contents
-- [Introduction](#Introduction)
-- [Structure](#Structure)
-- [Running](#Running)
-- [Defenders](#Defenders)
+## 目录
+- [简介](#简介)
+- [项目目录结构](#项目目录结构)
+- [运行](#运行)
+- [维护者](#维护者)
 - [License](#License)
 
 ---
 
-## Introduction
-This repo contain the term project of Tongji University's Database Course in 2021 spring. The tech stack is as follows:
+## 简介
+本仓库为包含同济大学2021年春数据库课程的大作业，一个运动健康管理系统，其技术栈如下：
+1. 后端：Flask
+2. 前端：Vue+Element UI
+3. 数据库：SQLite
 
-1. backend：Flask
-2. frontend：Vue+Element UI
-3. database：SQLite
-
-The features are as follows：
-
-1. user management
-2. health data management
-3. sports plans management
-4. sports records management
-5. sports share management
-6. comments to shares management
+其功能如下：
+1. 用户管理
+2. 健康数据管理
+3. 运动计划管理
+4. 运动记录管理
+5. 运动分享
+6. 分享评论
 
 ---
 
-## Structure
+## 项目目录结构
 ```bash
 .
 │
@@ -107,25 +103,25 @@ The features are as follows：
 
 ---
 
-## Running
-- OS：Windows10
-
-- Frontend：
+## 运行
+- 操作系统：Windows10
+- 前端：
     ```bash
-    yarn install	//install dependency
-    yarn run serve	//run in dev mode
+    yarn install	//安装依赖
+    yarn run serve	//以开发模式运行
     ```
-- Backend:
+- 后端:
     ```bash
-    pip install requirements.txt	//install packages. If there is any missing, please follow the prompts
-    python app.py					//run in debug mode
+    pip install requirements.txt	//安装python包，如有缺失请按照提示安装其他包
+    python app.py					//以Debug模式运行
+    ```
 
 ---
 
-## Defenders
-The repo is currently owned by https://github.com/teamwong111 maintain
+## 维护者
+该仓库目前的维护者为https://github.com/teamwong111
 
-If I have infringement or you have any questions, please contact me by email wungjz1@gmail.com
+如有侵权或其他问题请通过邮件联系wungjz1@gmail.com
 
 ---
 
